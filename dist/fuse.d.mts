@@ -1,3 +1,5 @@
+// Type definitions for Fuse.js v7.0.0
+// TypeScript v4.9.5
 export default Fuse
 
 declare class Fuse<T> {
@@ -364,3 +366,6 @@ export type Expression =
     }
   | { $and?: Expression[] }
   | { $or?: Expression[] }
+
+export default Fuse
+export as namespace Fuse

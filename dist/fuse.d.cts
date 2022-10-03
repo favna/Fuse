@@ -1,5 +1,7 @@
 // Type definitions for Fuse.js v7.0.0
 // TypeScript v4.9.5
+export default Fuse
+
 declare class Fuse<T> {
   public constructor(
     list: ReadonlyArray<T>,
@@ -98,7 +100,7 @@ declare class Fuse<T> {
   public static config: Required<IFuseOptions<any>>
 }
 
-declare class FuseIndex<T> {
+export declare class FuseIndex<T> {
   public constructor(options?: FuseIndexOptions<T>)
   public setSources(docs: ReadonlyArray<T>): void
   public setKeys(keys: ReadonlyArray<string>): void
@@ -111,12 +113,12 @@ declare class FuseIndex<T> {
   }
 }
 
-type FuseGetFunction<T> = (
+export type FuseGetFunction<T> = (
   obj: T,
   path: string | string[]
 ) => ReadonlyArray<string> | string
 
-type FuseIndexOptions<T> = {
+export type FuseIndexOptions<T> = {
   getFn: FuseGetFunction<T>
 }
 
@@ -138,7 +140,7 @@ type FuseIndexOptions<T> = {
  * }
  * ```
  */
-type FuseSortFunctionItem = {
+export type FuseSortFunctionItem = {
   [key: string]: { $: string } | { $: string; idx: number }[]
 }
 
@@ -153,7 +155,7 @@ type FuseSortFunctionItem = {
  * }
  * ```
  */
-type FuseSortFunctionMatch = {
+export type FuseSortFunctionMatch = {
   score: number
   key: string
   value: string
@@ -172,18 +174,18 @@ type FuseSortFunctionMatch = {
  * }
  * ```
  */
-type FuseSortFunctionMatchList = FuseSortFunctionMatch & {
+export type FuseSortFunctionMatchList = FuseSortFunctionMatch & {
   idx: number
 }
 
-type FuseSortFunctionArg = {
+export type FuseSortFunctionArg = {
   idx: number
   item: FuseSortFunctionItem
   score: number
   matches?: (FuseSortFunctionMatch | FuseSortFunctionMatchList)[]
 }
 
-type FuseSortFunction = (
+export type FuseSortFunction = (
   a: FuseSortFunctionArg,
   b: FuseSortFunctionArg
 ) => number
@@ -197,7 +199,7 @@ type FuseSortFunction = (
  * }
  * ```
  */
-type RecordEntryObject = {
+export type RecordEntryObject = {
   /** The text value */
   v: string
   /** The field-length norm */
@@ -214,12 +216,12 @@ type RecordEntryObject = {
  * }
  * ```
  */
-type RecordEntryArrayItem = ReadonlyArray<
+export type RecordEntryArrayItem = ReadonlyArray<
   RecordEntryObject & { i: number }
 >
 
 // TODO: this makes it difficult to infer the type. Need to think more about this
-type RecordEntry = {
+export type RecordEntry = {
   [key: string]: RecordEntryObject | RecordEntryArrayItem
 }
 
@@ -240,7 +242,7 @@ type RecordEntry = {
  * }
  * ```
  */
-type FuseIndexObjectRecord = {
+export type FuseIndexObjectRecord = {
   /** The index of the record in the source list */
   i: number
   $: RecordEntry
@@ -259,7 +261,7 @@ type FuseIndexObjectRecord = {
  * }
  * ```
  */
-type FuseIndexStringRecord = {
+export type FuseIndexStringRecord = {
   /** The index of the record in the source list */
   i: number
   /** The text value */
@@ -268,7 +270,7 @@ type FuseIndexStringRecord = {
   n: number
 }
 
-type FuseIndexRecords =
+export type FuseIndexRecords =
   | ReadonlyArray<FuseIndexObjectRecord>
   | ReadonlyArray<FuseIndexStringRecord>
 
@@ -281,15 +283,15 @@ type FuseIndexRecords =
  * }
  * ```
  */
-type FuseOptionKeyObject<T> = {
+export type FuseOptionKeyObject<T> = {
   name: string | string[]
   weight?: number
   getFn?: (obj: T) => ReadonlyArray<string> | string
 }
 
-type FuseOptionKey<T> = FuseOptionKeyObject<T> | string | string[]
+export type FuseOptionKey<T> = FuseOptionKeyObject<T> | string | string[]
 
-interface IFuseOptions<T> {
+export interface IFuseOptions<T> {
   /** Indicates whether comparisons should be case sensitive. */
   isCaseSensitive?: boolean
   /** Determines how close the match must be to the fuzzy location (specified by `location`). An exact letter match which is `distance` characters away from the fuzzy location would score as a complete mismatch. A `distance` of `0` requires the match be at the exact `location` specified. A distance of `1000` would require a perfect match to be within `800` characters of the `location` to be found using a `threshold` of `0.8`. */
@@ -336,27 +338,27 @@ interface IFuseOptions<T> {
  * const range: RangeTuple = [startIndex, endIndex];
  * ```
  */
-type RangeTuple = [number, number]
+export type RangeTuple = [number, number]
 
-type FuseResultMatch = {
+export type FuseResultMatch = {
   indices: ReadonlyArray<RangeTuple>
   key?: string
   refIndex?: number
   value?: string
 }
 
-type FuseSearchOptions = {
+export type FuseSearchOptions = {
   limit: number
 }
 
-type FuseResult<T> = {
+export type FuseResult<T> = {
   item: T
   refIndex: number
   score?: number
   matches?: ReadonlyArray<FuseResultMatch>
 }
 
-type Expression =
+export type Expression =
   | { [key: string]: string }
   | {
       $path: ReadonlyArray<string>
@@ -365,4 +367,5 @@ type Expression =
   | { $and?: Expression[] }
   | { $or?: Expression[] }
 
-export { Expression, FuseGetFunction, FuseIndex, FuseIndexObjectRecord, FuseIndexOptions, FuseIndexRecords, FuseIndexStringRecord, FuseOptionKey, FuseOptionKeyObject, FuseResult, FuseResultMatch, FuseSearchOptions, FuseSortFunction, FuseSortFunctionArg, FuseSortFunctionItem, FuseSortFunctionMatch, FuseSortFunctionMatchList, IFuseOptions, RangeTuple, RecordEntry, RecordEntryArrayItem, RecordEntryObject, Fuse as default };
+export = Fuse
+export as namespace Fuse

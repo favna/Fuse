@@ -26,6 +26,8 @@ body:
     attributes:
       label: The Fuse.js version where this bug is happening.
       options:
+        - '7.0.1'
+        - '7.0.0'
         - '6.6.2'
         - '6.6.1'
         - '6.6.0'
@@ -68,6 +70,8 @@ body:
       label: Which version did this behavior use to work in?
       description: In case you checked the regression bug checkbox, please provide the version in which this bug was not present.
       options:
+        - '7.0.1'
+        - '7.0.0'
         - '6.6.2'
         - '6.6.1'
         - '6.6.0'
